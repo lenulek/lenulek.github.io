@@ -59,7 +59,10 @@
 		var moveHeadingIntervalID = 
 		 setInterval(moveHeading, 30);
 		var moveHeadingBackIntervalID = 0;
-		
+		$("h1").click(function() {
+			$("h1").click(clearInterval(moveHeadingIntervalID));
+		});
+
 	</script>
 
 	
@@ -86,6 +89,11 @@
 　　　　 　 ︵Y..︵.,,　　　　　,,+..__ノ`` 
 　　　　　(,`, З о　　　　,.ノ川彡ゞ彡　　＊ 
 　　　　　 ゞ_,,,....彡彡~　　　`+Х彡彡彡彡*
+
+
+массив с координатами-объектами -
+var path = [{leftOffset: 0, topOffset: 0}, {leftOffset: 0, topOffset: 200}, {leftOffset: 200, topOffset: 200}, {leftOffset: 200, topOffset: 0}];
+
 
 -->
 
