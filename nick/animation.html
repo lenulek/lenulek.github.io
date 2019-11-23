@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset = "UTF-8">
+	<title>анимация</title>
+</head>
+
+<body>
+	<h1>Animation</h1>
+
+
+
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+	<script>
+		
+		var leftOffset = 0;
+		var topOffset = 0;
+		var moveHeading = function () {
+			$("h1").offset({ 
+				left: leftOffset				
+				});
+			leftOffset++;
+			if (leftOffset > 200) {
+				$("h1").offset({ top: topOffset});
+				topOffset++;
+				leftOffset = 200;
+				} 		
+			if (topOffset > 200) {
+				$("h1").offset({ left: leftOffset});
+				leftOffset--;
+				
+			}	
+		};
+	
+		
+		setInterval(moveHeading, 30);
+		
+	</script>
+
+	
+</body>
+
+</html>
+
+<!--
+	. 
+　 .,,..;~`''''　　　　`''''＜``彡　} 
+　 _...:=,`'　 ︵　 т　︵　　X彡-J 
+＜`　彡 /　　ミ　　,_人_.　＊彡　`~ 
+　 `~=::　　　 　　　　　　 　　　Y 
+　　 　i.　　　　　　　　　　　　 .: 
+　　　.\　　　　　　　,｡---.,,　　./ 
+　　　　ヽ　／ﾞ''```\;.{　　　 ＼／ 
+　　　　　Y　　　`J..r_.彳　 　| 
+　　　　　{　　　``　　`　　　i 
+　　　　　\　　　　　　　　　＼　　　..︵︵. 
+　　　　　`＼　　　　　　　　　``ゞ.,/` oQ o`) 
+　　　　　　`i,　　　　　　　　　　Y　 ω　/ 
+　　　　 　　`i,　　　 　　.　　　　"　　　/ 
+　　　　　　`iミ　　　　　　　　　　　,,ノ 
+　　　　 　 ︵Y..︵.,,　　　　　,,+..__ノ`` 
+　　　　　(,`, З о　　　　,.ノ川彡ゞ彡　　＊ 
+　　　　　 ゞ_,,,....彡彡~　　　`+Х彡彡彡彡*
+
+-->
+
