@@ -22,21 +22,43 @@
 				left: leftOffset,
 				top: topOffset				
 				});
-			leftOffset++;
-			if (leftOffset > 200) {
-				$("h1").offset({ top: topOffset});
-				topOffset++;
-				leftOffset = 200;
-				} 		
-			if (topOffset > 200) {
-				$("h1").offset({ left: leftOffset});
-				leftOffset--;
-				
-			}	
+			
+			if (leftOffset < 200) {
+				leftOffset++;
+			}
+ 			if (leftOffset === 200) {
+				if (topOffset < 200) {
+					topOffset++;
+				}	
+			}
+			if (topOffset === 200) {
+				moveHeadingBackIntervalID = setInterval(moveHeadingBack, 30);
+				clearInterval(moveHeadingIntervalID);
+			}
 		};
-	
+
+		var moveHeadingBack = function () {
+			$("h1").offset({ 
+				left: leftOffset,
+				top: topOffset				
+				});
+			if (leftOffset > 0) {
+				leftOffset--;
+			}
+			if (leftOffset === 0) {
+				if (topOffset > 0) {
+					topOffset--;
+				}	
+			}
+			if (topOffset === 0) {
+				clearInterval(moveHeadingBackIntervalID);
+				moveHeadingIntervalID = setInterval(moveHeading, 30);
+			}
+		}
 		
-		setInterval(moveHeading, 30);
+		var moveHeadingIntervalID = 
+		 setInterval(moveHeading, 30);
+		var moveHeadingBackIntervalID = 0;
 		
 	</script>
 
