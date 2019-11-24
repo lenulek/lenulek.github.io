@@ -15,37 +15,68 @@
 
 	<script>
 
-		var start = {leftOffset: 0, topOffset: 0};
-		var stepRight = {leftOffset: 200, topOffset: 0};
-		var stepDown = {leftOffset: 200, topOffset: 200};
-		var stepLeft = {leftOffset: 0, topOffset: 200}
+		var path = [
+			{"leftOffset": 0, "topOffset": 0}, 
+			{"leftOffset": 100, "topOffset": 100},
+			{"leftOffset": 200, "topOffset": 0}, 
+			{"leftOffset": 100, "topOffset": 100},
+			{"leftOffset": 200, "topOffset": 200},
+			{"leftOffset": 100, "topOffset": 100}, 
+			{"leftOffset": 0, "topOffset": 200},
+			{"leftOffset": 100, "topOffset": 100}
+		];
 
-		var path = [start, stepRight, stepDown, stepLeft];
-
+		var index = 0;
 		var score = 0;
 		var inetrvalTime = 30;
-
-		for (let i = 0; i < path.length; i++) {
-			var moveHeading = function () {
-				for (let step of path) {
-				$("h1").offset({ 
-					left: path[i].leftOffset,
-					top: path[i].topOffset				
+		var leftOffset = path[index].leftOffset;
+		var topOffset = path[index].topOffset;
+		var targetIndex = 0;
+		var target = path[targetIndex];
+		var updatePosition = function () {
+			$("h1").offset({ 
+					left: leftOffset,
+					top: topOffset				
 			});
-
-			if (step === start || step === stepLeft) {
-				path[i].leftOffset++;
-				path[i].topOffset;
+		}
+		var targetIsReached = function () {
+			if (leftOffset === target.leftOffset && topOffset === target.topOffset) {
+				return true;
+			} 
+			return false;
+		}
+		var chooseNextTarget = function () {
+			targetIndex++;
+			if (targetIndex === path.length) {
+				targetIndex = 0;
+			}
+			//targetIndex = (targetIndex + 1) % path.length;
+			return path[targetIndex];
+		}
+		var moveToTarget = function () {
+			if (leftOffset > target.leftOffset) {
+				leftOffset--;
+			}
+			if (leftOffset < target.leftOffset) {
+				leftOffset++;
+			}
+			if (topOffset > target.topOffset) {
+				topOffset--;
+			}
+			if (topOffset < target.topOffset) {
+				topOffset++;
+			}
+		}
+		var moveHeading = function () {				
+			if (targetIsReached()) {
+				target = chooseNextTarget();
 			} else {
-				path[i].topOffset++;
+				moveToTarget();
+				updatePosition();
 			}
-			
-			}
-		}
-			i++;
 		}
 
-		
+				
 			
 		
 
