@@ -33,10 +33,11 @@
 					top: path[i].topOffset				
 			});
 
-			if (step === 0 || step === 3) {
-				path[i].leftOffset++
+			if (step === start || step === stepLeft) {
+				path[i].leftOffset++;
+				path[i].topOffset;
 			} else {
-				path[i].topOffset++
+				path[i].topOffset++;
 			}
 			
 			}
