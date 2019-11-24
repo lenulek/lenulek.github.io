@@ -16,29 +16,32 @@
 	<script>
 
 		var start = {leftOffset: 0, topOffset: 0};
-		var stepLeft = {leftOffset: 200, topOffset: 0};
+		var stepRight = {leftOffset: 200, topOffset: 0};
 		var stepDown = {leftOffset: 200, topOffset: 200};
-		var finish = {leftOffset: 0, topOffset: 200}
+		var stepLeft = {leftOffset: 0, topOffset: 200}
 
-		var path = [start, stepLeft, stepDown, finish];
+		var path = [start, stepRight, stepDown, stepLeft];
 
 		var score = 0;
 		var inetrvalTime = 30;
 
 		for (let i = 0; i < path.length; i++) {
 			var moveHeading = function () {
-			$("h1").offset({ 
-				left: path[i].leftOffset,
-				top: path[i].topOffset				
-				});
-			
-			if (i = 0) {
+				for (let step of path) {
+				$("h1").offset({ 
+					left: path[i].leftOffset,
+					top: path[i].topOffset				
+			});
+
+			if (step === 0 || step === 3) {
 				path[i].leftOffset++
 			} else {
 				path[i].topOffset++
 			}
-			i++;
+			
+			}
 		}
+			i++;
 		}
 
 		
