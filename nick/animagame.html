@@ -76,12 +76,10 @@
 			}
 		}
 
-				
-			
-		
-
-		setInterval (moveHeading, inetrvalTime);
-		
+		var moveHeadingIntervalId = setInterval (moveHeading, inetrvalTime);
+		$("h1").click(function() {
+			$("h1").click(clearInterval(moveHeadingIntervalId));
+		})
 
 	</script>
 
