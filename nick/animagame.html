@@ -72,15 +72,15 @@
 			}
 		}
 
-		var timer = setInterval (moveHeading, inetrvalTime);
+		var moveHeadingIntervalId = setInterval (moveHeading, inetrvalTime);
 		
 		// stop on click: $("h1").click(function() {clearInterval(timer);})
 					
 		//move faster on click:
 		$("h1").click(function() {
-			let newInetrvalTime = inetrvalTime / 2
-			let newTimer = setInterval (moveHeading, newInetrvalTime);
-			inetrvalTime = newInetrvalTime;
+			inetrvalTime = inetrvalTime / 2;
+			clearInterval(moveHeadingIntervalId);
+			moveHeadingIntervalId = setInterval (moveHeading, inetrvalTime);
 			clickCount();
 		});
 		
@@ -90,10 +90,10 @@
 				$("h1").text("Animagame.Your clicks: " + numberOfClick);
 			} if (numberOfClick === 10) {
 				$("h1").text("Вы победили!");
+				clearInterval(moveHeadingIntervalId);
 			}
 		}
-			
-// надо остановить анимацию при достижении 10 кликов
+
 
 	</script>
 
