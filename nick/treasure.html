@@ -83,32 +83,39 @@
 		//Обработчик кликов — функция, которая будет вызываться каждый раз, когда игрок кликнет по карте.
 		// Добавляем элементу img обработчик клика
 		$("#map").click(function (event) {
+			//Ограничение по кликам
+			if (clicks >= alowedClicksNumber) {
+				alert("Game over");
+				return;
+			}
+
 			//Каждый раз, когда игрок кликает по карте, обработчик кликов должен:
 			//Увеличиваем счетчик кликов на 1
 			clicks++;
-
+			
 			//Вычисляем, насколько далеко место клика от места, где спрятан клад
 			var distance = getDistance(event, target);
-
-			// Преобразуем расстояние в подсказку
-			var distanceHint = getDistanceHint(distance);
-
-			// Записываем в элемент #distance новую подсказку и отображаем число оставшихся кликов
-			var leftAllowedClicks = alowedClicksNumber - clicks;
-			$("#distance").text(distanceHint + " Осталось кликов: " + leftAllowedClicks);
-			
-			//Ограничение по кликам
-			if (clicks > alowedClicksNumber) {
-				alert("КОНЕЦ ИГРЫ");
-				clicks = null;
-			}
 
 			//Проверка на выигрыш:
 			//Поздравить игрока, если он кликнул по кладу или вблизи него, и сообщить, сколько кликов ушло на поиски.
 			//Поскольку один пиксель очень мал, мы не будем вынуждать игрока кликать в точности по месту с кладом, а засчитаем за победу клик на расстоянии менее восьми пикселей.
 			if (distance < 8) {
 				alert("Клад найден! Сделано кликов: " + clicks);
-				clicks = null;
+				return;
+			}
+
+			// Преобразуем расстояние в подсказку
+			var distanceHint = getDistanceHint(distance);
+
+			// Записываем в элемент #distance новую подсказку и отображаем число оставшихся кликов
+			var leftAllowedClicks = alowedClicksNumber - clicks;
+			
+			$("#distance").text(distanceHint + " Осталось кликов: " + leftAllowedClicks);
+			
+			//Ограничение по кликам
+			if (clicks >= alowedClicksNumber) {
+				alert("Game over");
+				return;
 			}
 		});
 		
