@@ -17,18 +17,14 @@
 
 		var path = [
 			{"leftOffset": 0, "topOffset": 0}, 
-			{"leftOffset": 100, "topOffset": 100},
 			{"leftOffset": 200, "topOffset": 0}, 
-			{"leftOffset": 100, "topOffset": 100},
 			{"leftOffset": 200, "topOffset": 200},
-			{"leftOffset": 100, "topOffset": 100}, 
 			{"leftOffset": 0, "topOffset": 200},
-			{"leftOffset": 100, "topOffset": 100}
 		];
 
 		var index = 0;
-		var score = 0;
-		var inetrvalTime = 30;
+		var numberOfClick = 0;
+		var inetrvalTime = 300;
 		var leftOffset = path[index].leftOffset;
 		var topOffset = path[index].topOffset;
 		var targetIndex = 0;
@@ -76,10 +72,28 @@
 			}
 		}
 
-		var moveHeadingIntervalId = setInterval (moveHeading, inetrvalTime);
+		var timer = setInterval (moveHeading, inetrvalTime);
+		
+		// stop on click: $("h1").click(function() {clearInterval(timer);})
+					
+		//move faster on click:
 		$("h1").click(function() {
-			$("h1").click(clearInterval(moveHeadingIntervalId));
-		})
+			let newInetrvalTime = inetrvalTime / 2
+			let newTimer = setInterval (moveHeading, newInetrvalTime);
+			inetrvalTime = newInetrvalTime;
+			clickCount();
+		});
+		
+		var clickCount = function () {
+			if (numberOfClick < 10) {
+				numberOfClick++;
+				$("h1").text("Animagame.Your clicks: " + numberOfClick);
+			} if (numberOfClick === 10) {
+				$("h1").text("Вы победили!");
+			}
+		}
+			
+// надо остановить анимацию при достижении 10 кликов
 
 	</script>
 
@@ -89,6 +103,7 @@
 </html>
 
 <!--
+	{"leftOffset": 100, "topOffset": 100},
 	. 
 　 .,,..;~`''''　　　　`''''＜``彡　} 
 　 _...:=,`'　 ︵　 т　︵　　X彡-J 
