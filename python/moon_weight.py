@@ -1,10 +1,10 @@
 import sys
 def moon_weight():
-	print('What is your weight?')
+	print('Введите ваш нынешний земной вес')
 	weight = int(sys.stdin.readline())
-	print('What is your average weight change per year?')
+	print('Введите ежегодный прирост вашего веса')
 	wyearly_change = float(sys.stdin.readline())
-	print('How many years do you want to count?')
+	print('Введите количество лет для расчёта')
 	years_qty = int(sys.stdin.readline())
 	year = 2019
 	for i in range(0,years_qty):
