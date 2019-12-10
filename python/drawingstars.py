@@ -15,8 +15,10 @@ rounds = int(sys.stdin.readline())
 
 import turtle
 s = turtle.Pen()
-turtle.bgcolor('cyan')
+#turtle.bgcolor('cyan')
+turtle.bgcolor('black')
 s.shape('turtle')
+s.color('white')
 
 def draw_star(size, points, rounds):
     angle = 360/points
