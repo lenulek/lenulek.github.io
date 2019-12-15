@@ -2,7 +2,8 @@ import time
 from tkinter import *
 from tkinter import colorchooser
 tk = Tk()
-canvas = Canvas(tk, width=400, height=400)
+b = colorchooser.askcolor()
+canvas = Canvas(tk, bg=b[1], width=400, height=400)
 canvas.pack()
 c = colorchooser.askcolor()
 canvas.create_polygon(10, 10, 10, 60, 50, 35, fill=c[1])
