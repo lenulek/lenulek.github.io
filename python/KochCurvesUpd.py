@@ -19,7 +19,7 @@ t.color('cyan')
 
 ##random length
 l = random.randrange(30,300)
-print(l)
+print('random length',l)
 
 a = 60 ## angle
 
